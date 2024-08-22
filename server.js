@@ -7,8 +7,13 @@ const http = require("http");
 
 const app = express();
 
-// Ensure the 'www' folder exists
-const uploadDir = path.join(__dirname, "www");
+// Determine if the script is running as a packaged binary or via Node.js
+const isPackaged = process.pkg !== undefined;
+
+// Set the 'www' directory
+const uploadDir = isPackaged
+  ? path.join(path.dirname(process.execPath), "www") // Running as a packaged binary
+  : path.join(__dirname, "www"); // Running in a standard Node.js environment
 if (!fs.existsSync(uploadDir)) {
   fs.mkdirSync(uploadDir, { recursive: true });
   console.log(`Created directory: ${uploadDir}`);
@@ -47,7 +52,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
     console.log("No file uploaded.");
     return res.status(400).send("No file uploaded.");
   }
-  console.log(`File uploaded: ${req.file.originalname}`);
+  console.log(`File uploaded: ${req.file.originalname} to ${uploadDir}`);
   res.send(`File uploaded successfully: ${req.file.originalname}`);
 });
 

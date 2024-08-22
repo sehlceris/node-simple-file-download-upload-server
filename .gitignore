@@ -76,3 +76,6 @@ out/
 
 # local files
 local/
+
+# build files
+dist/

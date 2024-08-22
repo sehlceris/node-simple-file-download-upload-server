@@ -52,14 +52,24 @@ jobs:
           draft: false
           prerelease: false
 
-      - name: Upload Release Assets
+      - name: Upload Linux x64 Asset
         uses: actions/upload-release-asset@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           upload_url: ${{ steps.create_release.outputs.upload_url }}
-          asset_path: ./dist/node-*
-          asset_name: ${{ env.VERSION }}-${{ runner.os }}-binary
+          asset_path: dist/node-simple-file-download-upload-server-linux
+          asset_name: node-simple-file-server-linux-x64
+          asset_content_type: application/octet-stream
+
+      - name: Upload Windows x64 Asset
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: dist/node-simple-file-download-upload-server-win.exe
+          asset_name: node-simple-file-server-windows-x64.exe
           asset_content_type: application/octet-stream
 
       - name: Bump version and push tags

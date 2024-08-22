@@ -18,6 +18,9 @@ jobs:
         with:
           node-version: "20"
 
+      - name: Install ldid (for macOS binary signing)
+        run: sudo apt-get install -y ldid
+
       - name: Install dependencies
         run: npm install
 

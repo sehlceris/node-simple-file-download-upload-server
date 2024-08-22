@@ -1,5 +1,5 @@
 {
-  "name": "simple-file-download-upload-server",
+  "name": "node-simple-file-download-upload-server",
   "version": "0.1.0",
   "description": "",
   "main": "server.js",

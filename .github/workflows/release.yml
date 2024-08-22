@@ -71,8 +71,3 @@ jobs:
           asset_path: dist/node-simple-file-download-upload-server-win.exe
           asset_name: node-simple-file-server-windows-x64.exe
           asset_content_type: application/octet-stream
-
-      - name: Bump version and push tags
-        run: |
-          npm version patch -m "Bump to version %s"
-          git push origin main --tags
